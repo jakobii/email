@@ -1,0 +1,13 @@
+{
+    "Server": "smtp.gmail.com",
+    "Port": 587,
+    "Username": "user@gmail.com",
+    "Password": "p@$$w0rd",
+    "From": "user@gmail.com",
+    "To": [
+        "user2@gmail.com",
+        "user3@gmail.com"
+    ],
+    "Subject": "test passed!",
+    "Body": "<h1 style=\"color:green;\">This Test Passed!!!</h1>"
+}
