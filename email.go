@@ -69,10 +69,10 @@ func Send(Server string, Port int, Username string, Password string, From string
 	body.WriteString("From: " + From + "\r\n")
 	body.WriteString("To: " + strings.Join(To, ",") + "\r\n")
 
-	if len(Cc) < 1 {
+	if len(Cc) > 0 {
 		body.WriteString("Cc: " + strings.Join(Cc, ",") + "\r\n")
 	}
-	if len(Bcc) < 1 {
+	if len(Bcc) > 0 {
 		body.WriteString("Bcc: " + strings.Join(Bcc, ",") + "\r\n")
 	}
 
