@@ -1,40 +1,45 @@
-# email
-Send Emails in GO 
+# Email
+
+A simple package that makes sending emails in GO easy and straight forward.
 
 ```bash
 go get github.com/jakobii/email
 ```
 
-simple package that makes sending emails in go easy.
-
+## Example
 
 ```go
 package main
 
 import (
-	"log"
-
 	"github.com/jakobii/email"
 )
 
 func main() {
-	// reusable auth
-	conn := &email.SMTPAuth{
+
+	// reusable authentication
+	auth := email.Auth{
 		Server:   "smtp.gmail.com",
 		Port:     587,
 		Username: "user@gmail.com",
 		Password: "p@$$w0rd",
 	}
 
-	from := "user@gmail.com"
-	to := []string{"user2@gmail.com", "user3@gmail.com"}
-	subject := "test passed!"
-	body := "<h1 style=\"color:green;\">This Test Passed!!!</h1>"
+	// a single email message
+	msg := email.Message{
+		From:    "user@gmail.com",
+		To:      []string{"user2@gmail.com", "user3@gmail.com"},
+		Subject: "test passed!",
+
+		// note that the Body's ContentType defaults to email.HTML
+		//BodyType: email.Plain or email.HTML
+		Body:    "<h1 style=\"color:green;\">This Test Passed!!!</h1>",
+	}
 
 	// send email
-	err := conn.Send(from, to, subject, body, email.HTML)
+	err := auth.Send(msg)
 	if err != nil {
-		log.Fatal(err)
+		panic(err)
 	}
 }
 ```

@@ -18,6 +18,8 @@ func TestSend(t *testing.T) {
 		Password  string
 		From      string
 		To        []string
+		Cc        []string
+		Bcc       []string
 		Subject   string
 		Body      string
 		PlainText string
@@ -43,15 +45,27 @@ func TestSend(t *testing.T) {
 	}
 
 	// reusable auth
-	conn := &SMTPAuth{
+	auth := Auth{
 		Server:   settings.Server,
 		Port:     settings.Port,
 		Username: settings.Username,
 		Password: settings.Password,
 	}
 
+	// one off message
+	message := Message{
+		From:     settings.From,
+		To:       settings.To,
+		Cc:       settings.Cc,
+		Bcc:      settings.Bcc,
+		Subject:  settings.Subject,
+		Body:     settings.Body,
+		BodyType: HTML,
+	}
+
 	// send email
-	err = conn.Send(settings.From, settings.To, settings.Subject, settings.Body, HTML)
+	err = auth.Send(message)
+
 	if err != nil {
 		t.Error(err)
 	}

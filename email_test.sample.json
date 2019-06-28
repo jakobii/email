@@ -8,6 +8,14 @@
         "user2@gmail.com",
         "user3@gmail.com"
     ],
+    "Cc": [
+        "user4@gmail.com",
+        "user5@gmail.com"
+    ],
+    "Bcc": [
+        "user6@gmail.com",
+        "user7@gmail.com"
+    ],
     "Subject": "test passed!",
     "Body": "<h1 style=\"color:green;\">This Test Passed!!!</h1>"
 }
