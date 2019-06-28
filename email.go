@@ -28,7 +28,7 @@ type Message struct {
 	Cc       []string
 	Bcc      []string
 	Subject  string
-	Body     string
+	Body     []byte
 	BodyType ContentType
 }
 
@@ -53,7 +53,7 @@ func (a *Auth) Send(m Message) error {
 // Send is a simple function that will send emails
 // the parameter list is large but its a one stop solution
 // to sending an email.
-func Send(Server string, Port int, Username string, Password string, From string, To []string, Cc []string, Bcc []string, Subject string, Body string, Content ContentType) error {
+func Send(Server string, Port int, Username string, Password string, From string, To []string, Cc []string, Bcc []string, Subject string, Body []byte, Content ContentType) error {
 
 	//err checks
 	if len(To) < 1 {
@@ -83,7 +83,9 @@ func Send(Server string, Port int, Username string, Password string, From string
 	}
 
 	body.WriteString("MIME-version: 1.0;\nContent-Type: " + Content.String() + "; charset=\"UTF-8\";\n\n")
-	body.WriteString("\r\n" + Body + "\r\n")
+	body.WriteString("\r\n")
+	body.Write(Body)
+	body.WriteString("\r\n")
 
 	err := smtp.SendMail(Address, Authentication, From, To, body.Bytes())
 	if err != nil {

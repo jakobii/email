@@ -59,7 +59,7 @@ func TestSend(t *testing.T) {
 		Cc:       settings.Cc,
 		Bcc:      settings.Bcc,
 		Subject:  settings.Subject,
-		Body:     settings.Body,
+		Body:     []byte(settings.Body),
 		BodyType: HTML,
 	}
 

@@ -33,7 +33,7 @@ func main() {
 
 		// note that the Body's ContentType defaults to email.HTML
 		//BodyType: email.Plain or email.HTML
-		Body:    "<h1 style=\"color:green;\">This Test Passed!!!</h1>",
+		Body:    []byte("<h1 style=\"color:green;\">This Test Passed!!!</h1>"),
 	}
 
 	// send email
